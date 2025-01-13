@@ -11,6 +11,19 @@ namespace AllForOneAPI.Controllers
     [Route("[controller]")]
     public class OddOrEvenController : ControllerBase
     {
-        
+        private readonly OddOrEvenServices _oddOrEvenServices;
+
+        public OddOrEvenController(OddOrEvenServices oddOrEvenServices)
+        {
+            _oddOrEvenServices = oddOrEvenServices;
+        }
+
+        [HttpGet]
+        [Route("OddOrEven/{checkNum}")]
+
+        public string OddOrEven(string checkNum)
+        {
+            return _oddOrEvenServices.OddOrEven(checkNum);
+        }
     }
 }

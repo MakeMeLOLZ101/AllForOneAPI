@@ -9,8 +9,25 @@ namespace AllForOneAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AnswerQuestionsServices : ControllerBase
+    public class AnswerQuestionsController : ControllerBase
     {
-        
+        private readonly AnswerQuestionsServices _answerQuestionsServices;
+
+        public AnswerQuestionsController(AnswerQuestionsServices answerQuestionsServices)
+    {
+        _answerQuestionsServices = answerQuestionsServices;
+    }
+
+    [HttpGet("{name}/{time}")]
+    public ActionResult<string> GetInfo(string name, string time)
+    {
+        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(time))
+        {
+            return BadRequest("We need your name and wake-up time!!!");
+        }
+
+        var message = _answerQuestionsServices.WholeSentence(name, time);
+        return Ok(message);
+    }
     }
 }

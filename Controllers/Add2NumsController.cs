@@ -11,6 +11,17 @@ namespace AllForOneAPI.Controllers
     [Route("[controller]")]
     public class Add2NumsController : ControllerBase
     {
-        
+        private readonly Add2NumsServices _addTwoNumsServices;
+
+        public Add2NumsController(Add2NumsServices add2NumsServices)
+        {
+            _addTwoNumsServices = add2NumsServices;
+        }
+
+        [HttpGet("add")]
+        public string AddTwoNumbers([FromQuery] int num1, [FromQuery] int num2)
+        {
+            return _addTwoNumsServices.AddNumbers(num1, num2);
+        }
     }
 }
