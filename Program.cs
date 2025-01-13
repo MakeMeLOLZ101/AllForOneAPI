@@ -17,6 +17,7 @@ builder.Services.AddScoped<GreaterLessThanServices>();
 builder.Services.AddScoped<MadlibServices>();
 builder.Services.AddScoped<ReverseItNumbersServices>();
 builder.Services.AddScoped<ReverseItNumbersServices>();
+builder.Services.AddScoped<MagicEightServices>();
 
 var app = builder.Build();
 
